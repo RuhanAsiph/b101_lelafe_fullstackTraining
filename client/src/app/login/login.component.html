@@ -1,0 +1,46 @@
+<section class="login-section" *ngIf="!isSignUp">
+<mat-card>
+	<h3>Login</h3>
+	<mat-form-field class="example-full-width" appearance="fill" >
+  <mat-label>username</mat-label>
+	<input matInput placeholder="username" type="string" [(ngModel)]="authModel.username" />
+	</mat-form-field>
+	 
+	<mat-form-field class="example-full-width" appearance="fill">
+		<mat-label>Password</mat-label>
+
+		<input matInput placeholder="enter passcode" type="password" [(ngModel)]="authModel.password"/>
+	</mat-form-field>
+	<br>
+	<button class="button-full-width" mat-raised-button color="primary" (click)="login()">Login</button> <br>
+	<br>
+	<div class="text-center show-cursor"><a (click)="toggle()">Don't have an account, create</a></div>
+</mat-card>
+
+</section>
+<section class="register-section login-section" *ngIf="isSignUp">
+	<mat-card>
+		<h3>Register</h3>
+		<mat-form-field class="example-full-width" appearance="fill">
+			<mat-label>Username</mat-label>
+			<input matInput placeholder="username" type="string" [(ngModel)]="userModel.username" />
+			</mat-form-field>
+		<!--use bootstrap to create one row and twelve col/2 (mat-card: 1row, 2x mat-form-field: 6col - create a div - a parent div for two fields first name and last name)-->
+		<mat-form-field class="example-full-width" appearance="fill">
+		<mat-label>Email</mat-label>
+		<input matInput placeholder="email" type="email" [(ngModel)]="userModel.email" />
+		</mat-form-field>
+		 
+		<mat-form-field class="example-full-width" appearance="fill">
+			<mat-label>Password</mat-label>
+	
+			<input matInput placeholder="enter passcode" type="password" [(ngModel)]="userModel.password"/>
+		</mat-form-field> <br>
+		<button class="button-full-width" mat-raised-button color="primary" (click)="register()">Register</button> <br>
+		<br>
+		<div class="text-center show-cursor"><a (click)="toggle()">Already have an account</a></div>
+	</mat-card>
+	
+</section>
+
+	

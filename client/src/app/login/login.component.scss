@@ -1,0 +1,30 @@
+//login and registration
+.login-section mat-card {
+	width: 350px;
+	height: 400px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	vertical-align: middle;
+}
+
+a {	
+	display: flex;
+	color: black;
+	background-color: red;
+    flex-direction: column-reverse;
+}
+a:hover {
+	color: white;
+	background-color: black;
+	flex-direction: column-reverse;
+}
+
+
+.example-full-width {
+	width: 100%;
+}
+
+.button-full-width {
+	width: 100%;
+}
