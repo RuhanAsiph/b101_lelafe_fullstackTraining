@@ -5,26 +5,33 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
- 
-  authModel:any = {}
-  
 
-  //save users
-  userModel:any = {} //push in the userDB arr
-  //use push method
+//implement linked list to store users
+class LinkedList {
+  constructor(value:any){
+    const head:any = {
+      value: value,
+      next: null
+    }
+    const tail:any = head;
+    length = 1;
+  }
+}
+
+const myLinkedList = new LinkedList(10);
+console.log(myLinkedList)
+
+
+export class LoginComponent implements OnInit {
+
+  authModel:any = {}
+  userModel:any = {}
   userDB:any = []
-  
-  //alert(user saved)
 
   isSignUp:boolean = false;
-  constructor() { 
-    
-  }
+  constructor() { }
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
   
   login() {
     const authUser:any = this.authModel.username
@@ -33,6 +40,7 @@ export class LoginComponent implements OnInit {
     const userFound:any = this.userDB.find(function findUser(user:any){
       return user.username ===  authUser && user.password === authPass
     })
+    
     if (userFound === undefined) {
       alert("Please register")
     } else {
@@ -48,4 +56,4 @@ export class LoginComponent implements OnInit {
     this.userDB.push(this.userModel)
   }
 }
- 
+
