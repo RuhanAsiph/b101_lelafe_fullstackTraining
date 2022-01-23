@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-
+/*
 //implement linked list to store users
 class LinkedList {
   constructor(value:any){
@@ -18,9 +18,10 @@ class LinkedList {
   }
 }
 
+
 const myLinkedList = new LinkedList(10);
 console.log(myLinkedList)
-
+*/
 
 export class LoginComponent implements OnInit {
 
