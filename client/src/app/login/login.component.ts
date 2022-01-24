@@ -1,22 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-//implement linked list to store users
-/*
-class LinkedList {
-  constructor(value:any){
-    const head:any = {
-      value: value,
-      next: null
-    }
-    const tail:any = head;
-    length = 1;
-  }
-}
-
-
-const myLinkedList = new LinkedList(10);
-console.log(myLinkedList)
-
-*/
 
 @Component({
   selector: 'app-login',
