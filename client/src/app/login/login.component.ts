@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
-@Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
-})
-/*
 //implement linked list to store users
+/*
 class LinkedList {
   constructor(value:any){
     const head:any = {
@@ -21,7 +15,15 @@ class LinkedList {
 
 const myLinkedList = new LinkedList(10);
 console.log(myLinkedList)
+
 */
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
+})
+
 
 export class LoginComponent implements OnInit {
 
@@ -35,17 +37,14 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
   
   login() {
-    const authUser:any = this.authModel.username
-    const authPass:any = this.authModel.password
     
-    const userFound:any = this.userDB.find(function findUser(user:any){
-      return user.username ===  authUser && user.password === authPass
-    })
-    
-    if (userFound === undefined) {
-      alert("Please register")
-    } else {
+    const userFound = this.userDB.find((user:any) => user.email === this.authModel.email && user.password === this.authModel.password)
+
+    if (userFound) {
       alert("sucess")
+
+    } else {
+      alert("please register")
     }
   }
 
@@ -54,7 +53,23 @@ export class LoginComponent implements OnInit {
   }
   
   register(){
-    this.userDB.push(this.userModel)
+    if (this.userDB.length == 0) {
+      this.userDB.push(this.userModel)
+      alert("user successfully registered")
+      this.userModel = {}
+    } else {
+      for (let i = 0; i < this.userDB.length; i++){
+        if (this.userDB[i].email !== this.userModel.email) {
+          this.userDB.push(this.userModel)
+          alert("user successfully registered")
+          this.userModel = {}
+          break;
+        } else {
+          alert("please use a different email")
+          break;
+        }
+      }
+    }
   }
 }
 
