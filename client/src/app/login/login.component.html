@@ -23,13 +23,13 @@
 		<h3>Register</h3>
 		<div class="">
 			<div class="row">
-			  <div class="col-4">
+			  <div class="col-6">
 				<mat-form-field class="example-full-width" appearance="fill">
 					<mat-label>First Name</mat-label>
 					<input matInput placeholder="First Name" type="string" [(ngModel)]="userModel.firstName" />
 					</mat-form-field>
 			  </div>
-			  <div class="col-8">
+			  <div class="col-6">
 				<mat-form-field class="example-full-width" appearance="fill">
 					<mat-label>Last Name</mat-label>
 					<input matInput placeholder="last name" type="string" [(ngModel)]="userModel.lastName" />
@@ -38,24 +38,7 @@
 			  
 			</div>
 		  </div>
-		<!--
-		<div class="container">
-			<div class="row">
-			  <div class="col-sm">
-				<mat-form-field class="example-full-width" appearance="fill">
-					<mat-label>First Name</mat-label>
-					<input matInput placeholder="First Name" type="string" [(ngModel)]="userModel.firstName" />
-					</mat-form-field>
-			  </div>
-			  <div class="col-sm">
-				<mat-form-field class="example-full-width" appearance="fill">
-					<mat-label>Last Name</mat-label>
-					<input matInput placeholder="last name" type="string" [(ngModel)]="userModel.lastName" />
-					</mat-form-field>
-			  </div>
-			</div>
-		  </div>
-		  -->
+		 
 			
 		<mat-form-field class="example-full-width" appearance="fill">
 			<mat-label>Username</mat-label>
@@ -71,7 +54,24 @@
 			<mat-label>Password</mat-label>
 	
 			<input matInput placeholder="enter passcode" type="password" [(ngModel)]="userModel.password"/>
-		</mat-form-field> <br>
+		</mat-form-field>
+		<div class="">
+			<div class="row">
+			  <div class="col-5">
+				<mat-form-field class="example-full-width" appearance="fill">
+					<mat-label>Age</mat-label>
+					<input matInput placeholder="Age" type="string" [(ngModel)]="userModel.age" />
+					</mat-form-field>
+			  </div>
+			  <div class="col-7">
+				<mat-form-field class="example-full-width" appearance="fill">
+					<mat-label>DOB</mat-label>
+					<input matInput placeholder="Date Of Birth" type="string" [(ngModel)]="userModel.dob" />
+					</mat-form-field>
+			  </div>
+			  
+			</div>
+		  </div>
 		<button class="button-full-width" mat-raised-button color="primary" (click)="register()">Register</button> <br>
 		<br>
 		<div class="text-center show-cursor"><a (click)="toggle()">Already have an account</a></div>
