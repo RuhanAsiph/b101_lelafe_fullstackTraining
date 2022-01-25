@@ -1,4 +1,4 @@
-<section class="login-section" *ngIf="!isSignUp">
+<section class="login-section" *ngIf="!isSignUp && !isLoggedIn">
 <mat-card>
 	<h3>Login</h3>
 	<mat-form-field class="example-full-width" appearance="fill" >
@@ -78,5 +78,20 @@
 	</mat-card>
 	
 </section>
-
+<!--user list-->
+<section *ngIf="isLoggedIn">
+	<h1>Users</h1>
+	<p>logged in</p>
 	
+	<!--
+		Create a bootstrap table - use ngFor, for creating table rows
+		syntax - 
+		table 
+		th - hardcoded like firstname, lastname, username, enmail 
+		tr - > *ngFor="let user of users(userDB)"
+		td - > {{user.firstName}} - interpolation
+		td - > {{user.firstName}} - interpolation
+		td - > {{user.firstName}} - interpolation
+		td - > {{user.firstName}} - interpolation
+	-->
+</section>	

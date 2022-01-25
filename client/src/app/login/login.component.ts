@@ -12,8 +12,8 @@ export class LoginComponent implements OnInit {
   authModel:any = {}
   userModel:any = {}
   userDB:any = []
-
   isSignUp:boolean = false;
+  isLoggedIn:boolean = false;
   constructor() { }
 
   ngOnInit(): void {}
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
     if (userFound) {
       alert("sucess")
-
+      this.isLoggedIn = true;
     } else {
       alert("please register")
     }
@@ -35,23 +35,15 @@ export class LoginComponent implements OnInit {
   }
   
   register(){
-    if (this.userDB.length == 0) {
-      this.userDB.push(this.userModel)
-      alert("user successfully registered")
-      this.userModel = {}
-    } else {
-      for (let i = 0; i < this.userDB.length; i++){
-        if (this.userDB[i].email !== this.userModel.email) {
-          this.userDB.push(this.userModel)
-          alert("user successfully registered")
-          this.userModel = {}
-          break;
-        } else {
-          alert("please use a different email")
-          break;
+        const isExists = this.userDB.some((user:any) => user.email === this.userModel.email)
+        if (isExists) {
+          alert('user exists')
         }
-      }
-    }
+        else {
+          this.userDB.push(this.userModel)
+          this.userModel = {}
+          alert("user successfully registered")
+        }
   }
 }
 
