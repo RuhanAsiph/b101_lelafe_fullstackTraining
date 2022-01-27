@@ -80,20 +80,7 @@
 </section>
 <!--user list-->
 <section *ngIf="isLoggedIn">
-	<h1>Users</h1>
-	<p>logged in</p>
-	
-	<!--
-		Create a bootstrap table - use ngFor, for creating table rows
-		syntax - 
-		table 
-		th - hardcoded like firstname, lastname, username, enmail 
-		tr - > *ngFor="let user of users(userDB)"
-		td - > {{user.firstName}} - interpolation
-		td - > {{user.firstName}} - interpolation
-		td - > {{user.firstName}} - interpolation
-		td - > {{user.firstName}} - interpolation
-	-->
+	<h1 class="text-center">Users</h1>
 	<table class="table container text-center">
 		<thead>
 			<tr>
@@ -103,6 +90,7 @@
 				<th>Email</th>
 				<th>DOB</th>
 				<th>Age</th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -113,7 +101,12 @@
 				<td>{{user.email}}</td>
 				<td>{{user.dob}}</td>
 				<td>{{user.age}}</td>
+				<td>
+					<i class="fa fa-pencil-square-o fa-fw text-primary" aria-hidden="true" (click)="edit(user)"></i>
+					<i class="fa fa-trash fa-fw text-danger" aria-hidden="true" (click)="delete(user.email)"></i>
+				</td>
 			</tr>
+		
 		</tbody>
 	</table>
 </section>	

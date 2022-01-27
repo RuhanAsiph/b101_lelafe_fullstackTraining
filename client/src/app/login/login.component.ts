@@ -45,5 +45,24 @@ export class LoginComponent implements OnInit {
           alert("user successfully registered")
         }
   }
+
+  delete(email:any){ 
+      let index = this.userDB.findIndex((element:any) => element.email === email)
+      if (index != -1){
+        this.userDB.splice(index, 1)
+        alert("removed")
+      }
+      else {
+        console.log("forbidden")
+      }
+  }
+  edit(user:any) {
+    /*
+      s1 - assign user to userModel  this.userModel = user
+      navigate to register section toggle()
+      console.log(user)
+    */
+   
+  }
 }
 
