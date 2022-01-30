@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   userDB:any = []
   isSignUp:boolean = false;
   isLoggedIn:boolean = false;
+  isUpdate:boolean = false;
   constructor() { }
 
   ngOnInit(): void {}
@@ -48,21 +49,32 @@ export class LoginComponent implements OnInit {
 
   delete(email:any){ 
       let index = this.userDB.findIndex((element:any) => element.email === email)
-      if (index != -1){
+      if (index != -1) {
         this.userDB.splice(index, 1)
         alert("removed")
       }
       else {
-        console.log("forbidden")
+        console.log('forbidden') 
       }
   }
   edit(user:any) {
-    /*
-      s1 - assign user to userModel  this.userModel = user
-      navigate to register section toggle()
-      console.log(user)
-    */
-   
+    this.userModel = user
+    this.isSignUp = true
+    this.isLoggedIn = false
+    this.isUpdate = !this.isUpdate
   }
+
+  update(){
+    //s4 - disable email input using property bind, when performing edit
+    let index = this.userDB.findIndex((element:any) => element.email === this.userModel.email)
+    if (index != -1) {
+      this.userDB.splice(index, 1)
+      this.userDB.push(this.userModel)
+      this.userModel = {}
+      alert("user updated")
+    }
+  }
+  //concept of services in angular - dependency injection, why we use services? 
+  //generate a service ng g s "auth"
 }
 
