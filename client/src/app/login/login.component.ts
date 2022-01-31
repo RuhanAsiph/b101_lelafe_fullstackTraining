@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  providers: [ AuthService ]
 })
 
 
@@ -15,7 +17,8 @@ export class LoginComponent implements OnInit {
   isSignUp:boolean = false;
   isLoggedIn:boolean = false;
   isUpdate:boolean = false;
-  constructor() { }
+  disabled:boolean = false;
+  constructor(private serv:AuthService) { }
 
   ngOnInit(): void {}
   
@@ -62,6 +65,7 @@ export class LoginComponent implements OnInit {
     this.isSignUp = true
     this.isLoggedIn = false
     this.isUpdate = !this.isUpdate
+    this.disabled = !this.disabled
   }
 
   update(){
@@ -72,9 +76,9 @@ export class LoginComponent implements OnInit {
       this.userDB.push(this.userModel)
       this.userModel = {}
       alert("user updated")
+    } else {
+      alert("internal error, contact admin")
     }
   }
-  //concept of services in angular - dependency injection, why we use services? 
-  //generate a service ng g s "auth"
 }
 
