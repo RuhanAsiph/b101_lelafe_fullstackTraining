@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
     password: ''
   }
   userModel:any = {}
-  userDB:any = []
   isSignUp:boolean = false;
   isLoggedIn:boolean = false;
   isUpdate:boolean = false;
@@ -34,52 +33,29 @@ export class LoginComponent implements OnInit {
     } else {
       alert(res.data)
     }
-    // const userFound = this.userDB.find((user:any) => user.email === this.authModel.email && user.password === this.authModel.password)
-
-    // if (userFound) {
-    //   alert("sucess")
-    //   this.isLoggedIn = true;
-    // } else {
-    //   alert("please register")
-    // }
   }
-
-
-  getUsers(){
-    const res = this.authService.getUsers()
-    console.log(res)
-    if (res.status === 200) {
-      this.users = res.data
-    }
-  }
-
-
-
+  
   toggle(){
     this.isSignUp = !this.isSignUp
   }
   
   register(){
-        const isExists = this.userDB.some((user:any) => user.email === this.userModel.email)
-        if (isExists) {
-          alert('user exists')
-        }
-        else {
-          this.userDB.push(this.userModel)
-          this.userModel = {}
-          alert("user successfully registered")
-        }
+    const res = this.authService.register(this.userModel)
+    if (res.status === 200) {
+      alert(res.data)
+      this.userModel = {}
+    } else {
+      alert(res.data)
+    }
   }
 
   delete(email:any){ 
-      let index = this.userDB.findIndex((element:any) => element.email === email)
-      if (index != -1) {
-        this.userDB.splice(index, 1)
-        alert("removed")
-      }
-      else {
-        console.log('forbidden') 
-      }
+    const res = this.authService.delete(email)
+    if (res.status === 200) {
+      alert(res.data)
+    } else {
+      alert(res.data)
+    }
   }
   edit(user:any) {
     this.userModel = user
@@ -89,13 +65,20 @@ export class LoginComponent implements OnInit {
   }
 
   update(){
-    let index = this.userDB.findIndex((element:any) => element.email === this.userModel.email)
-    if (index != -1) {
-      this.userDB[index] = this.userModel;
+    const res = this.authService.update(this.userModel)
+    if (res.status === 200) {
+      alert(res.data)
       this.userModel = {}
-      alert("user updated")
     } else {
-      alert("internal error, contact admin")
+      alert(res.data)
+    }
+  }
+
+  //custom functions to perform tasks
+  getUsers(){
+    const res = this.authService.getUsers()
+    if (res.status === 200) {
+      this.users = res.data
     }
   }
 }
