@@ -47,7 +47,7 @@
 		<!--use bootstrap to create one row and twelve col/2 (mat-card: 1row, 2x mat-form-field: 6col - create a div - a parent div for two fields first name and last name)-->
 		<mat-form-field class="example-full-width" appearance="fill">
 		<mat-label>Email</mat-label>
-		<input matInput placeholder="email" [disabled]="disabled" type="email" [(ngModel)]="userModel.email" />
+		<input matInput placeholder="email" [disabled]="isUpdate" type="email" [(ngModel)]="userModel.email" />
 		</mat-form-field>
 		 
 		<mat-form-field class="example-full-width" appearance="fill">
@@ -95,7 +95,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr *ngFor="let user of userDB">
+			<tr *ngFor="let user of users">
 				<td>{{user.firstName}}</td>
 				<td>{{user.lastName}}</td>
 				<td>{{user.username}}</td>

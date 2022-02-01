@@ -1,38 +1,59 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { Auth } from '../models/authModel';
+
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
-  providers: [ AuthService ]
+  styleUrls: ['./login.component.scss']
 })
-
-
 export class LoginComponent implements OnInit {
-
-  authModel:any = {}
+  users:any = []
+  authModel:Auth = {
+    email: '',
+    password: ''
+  }
   userModel:any = {}
   userDB:any = []
   isSignUp:boolean = false;
   isLoggedIn:boolean = false;
   isUpdate:boolean = false;
-  disabled:boolean = false;
-  constructor(private serv:AuthService) { }
+  
+  constructor(private authService:AuthService) { }
 
   ngOnInit(): void {}
   
   login() {
-    
-    const userFound = this.userDB.find((user:any) => user.email === this.authModel.email && user.password === this.authModel.password)
-
-    if (userFound) {
-      alert("sucess")
+    const res = this.authService.login(this.authModel)
+    if (res.status === 200) {
       this.isLoggedIn = true;
+      this.getUsers()
+      alert(res.data)
     } else {
-      alert("please register")
+      alert(res.data)
+    }
+    // const userFound = this.userDB.find((user:any) => user.email === this.authModel.email && user.password === this.authModel.password)
+
+    // if (userFound) {
+    //   alert("sucess")
+    //   this.isLoggedIn = true;
+    // } else {
+    //   alert("please register")
+    // }
+  }
+
+
+  getUsers(){
+    const res = this.authService.getUsers()
+    console.log(res)
+    if (res.status === 200) {
+      this.users = res.data
     }
   }
+
+
 
   toggle(){
     this.isSignUp = !this.isSignUp
@@ -65,15 +86,12 @@ export class LoginComponent implements OnInit {
     this.isSignUp = true
     this.isLoggedIn = false
     this.isUpdate = !this.isUpdate
-    this.disabled = !this.disabled
   }
 
   update(){
-    //s4 - disable email input using property bind, when performing edit
     let index = this.userDB.findIndex((element:any) => element.email === this.userModel.email)
     if (index != -1) {
-      this.userDB.splice(index, 1)
-      this.userDB.push(this.userModel)
+      this.userDB[index] = this.userModel;
       this.userModel = {}
       alert("user updated")
     } else {
