@@ -10,7 +10,7 @@ import { AuthService } from '../auth.service';
 export class UserListComponent implements OnInit {
 
   constructor(private authService:AuthService, private router:Router) { }
-  
+  isEmpty:boolean = true
   users:any = []
   
   userModel:any = {}

@@ -54,7 +54,9 @@
 		  </div>
 		  <span *ngIf="!isUpdate"><button class="button-full-width" mat-raised-button color="primary" (click)="register()">Register</button> <br> </span>
 		  <span *ngIf="isUpdate"><button class="button-full-width" mat-raised-button color="primary" (click)="update()">Update</button> <br> </span>
-		<br>
+		  <span *ngIf="isUpdate"><button class="button-full-width mt-1" mat-raised-button color="primary" (click)="back()">Back</button> <br> </span>
+		      <br>
+
 		<div *ngIf="!isUpdate" class="text-center show-cursor mb-2"> <a routerLink="/login">Already have an account?</a></div>
 	</mat-card>
 	

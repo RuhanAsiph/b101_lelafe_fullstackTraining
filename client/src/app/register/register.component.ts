@@ -25,6 +25,10 @@ export class RegisterComponent implements OnInit {
     }
   }
   
+  back(){
+     this.router.navigate(['/userlist'])
+  }
+
   register(){
     const res = this.authService.register(this.userModel)
     if (res.status === 200) {

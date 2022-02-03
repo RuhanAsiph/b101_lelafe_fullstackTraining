@@ -11,14 +11,16 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { RegisterComponent } from './register/register.component';
 import { UserListComponent } from './user-list/user-list.component'; 
-import { HttpClientModule } from '@angular/common/http'; 
+import { HttpClientModule } from '@angular/common/http';
+import { BganimateComponent } from './bganimate/bganimate.component'; 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    UserListComponent
+    UserListComponent,
+    BganimateComponent
   ],
   imports: [
     BrowserModule,
