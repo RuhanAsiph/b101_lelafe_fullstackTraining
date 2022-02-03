@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { Auth } from '../models/authModel';
-
 
 
 @Component({
@@ -10,76 +10,36 @@ import { Auth } from '../models/authModel';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  users:any = []
+
   authModel:Auth = {
     email: '',
     password: ''
   }
-  userModel:any = {}
-  isSignUp:boolean = false;
-  isLoggedIn:boolean = false;
-  isUpdate:boolean = false;
   
-  constructor(private authService:AuthService) { }
+  constructor(private authService:AuthService, private router:Router) { }
 
   ngOnInit(): void {}
   
   login() {
     const res = this.authService.login(this.authModel)
+
     if (res.status === 200) {
-      this.isLoggedIn = true;
-      this.getUsers()
+      this.router.navigate(['/userlist'])
       alert(res.data)
+      this.authModel = {}
     } else {
       alert(res.data)
     }
   }
   
-  toggle(){
-    this.isSignUp = !this.isSignUp
-  }
-  
-  register(){
-    const res = this.authService.register(this.userModel)
-    if (res.status === 200) {
-      alert(res.data)
-      this.userModel = {}
-    } else {
-      alert(res.data)
-    }
-  }
-
-  delete(email:any){ 
-    const res = this.authService.delete(email)
-    if (res.status === 200) {
-      alert(res.data)
-    } else {
-      alert(res.data)
-    }
-  }
-  edit(user:any) {
-    this.userModel = user
-    this.isSignUp = true
-    this.isLoggedIn = false
-    this.isUpdate = !this.isUpdate
-  }
-
-  update(){
-    const res = this.authService.update(this.userModel)
-    if (res.status === 200) {
-      alert(res.data)
-      this.userModel = {}
-    } else {
-      alert(res.data)
-    }
-  }
-
-  //custom functions to perform tasks
-  getUsers(){
-    const res = this.authService.getUsers()
-    if (res.status === 200) {
-      this.users = res.data
-    }
-  }
 }
 
+//todo 
+/* 
+  flow: html -> ts -> service --> server(nodeapi) -> index(main server.js) -> routes -> controllers   
+  s1 - redirection from update to user list 
+  s2 - when userList = empty display no users
+  s3 - what is nodejs -> disadvantages, expressjs, async, non blocking input output, event loop, promises, callback, generators, 
+  s4 - index.js in server 
+  s5 - study http methods
+*/

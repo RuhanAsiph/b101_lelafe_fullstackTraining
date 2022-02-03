@@ -8,12 +8,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card'; 
 import {MatTabsModule} from '@angular/material/tabs'; 
 import {MatInputModule} from '@angular/material/input'; 
-import {MatButtonModule} from '@angular/material/button'; 
+import {MatButtonModule} from '@angular/material/button';
+import { RegisterComponent } from './register/register.component';
+import { UserListComponent } from './user-list/user-list.component'; 
+import { HttpClientModule } from '@angular/common/http'; 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +28,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatTabsModule,
     MatInputModule,
     FormsModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
