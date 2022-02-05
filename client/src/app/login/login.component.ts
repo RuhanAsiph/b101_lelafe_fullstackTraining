@@ -18,8 +18,14 @@ export class LoginComponent implements OnInit {
   
   constructor(private authService:AuthService, private router:Router) { }
 
-  ngOnInit(): void {}
-  
+  ngOnInit(): void {
+    this.testBackend()
+  }
+  testBackend(){
+    this.authService.testBackend().subscribe((res:any) => {
+      alert(res.data)
+    })
+  }
   login() {
     const res = this.authService.login(this.authModel)
 
@@ -37,9 +43,5 @@ export class LoginComponent implements OnInit {
 //todo 
 /* 
   flow: html -> ts -> service --> server(nodeapi) -> index(main server.js) -> routes -> controllers   
-  s1 - redirection from update to user list 
-  s2 - when userList = empty display no users
-  s3 - what is nodejs -> disadvantages, expressjs, async, non blocking input output, event loop, promises, callback, generators, 
-  s4 - index.js in server 
   s5 - study http methods
 */

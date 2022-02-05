@@ -10,7 +10,7 @@ import { AuthService } from '../auth.service';
 export class UserListComponent implements OnInit {
 
   constructor(private authService:AuthService, private router:Router) { }
-  isEmpty:boolean = true
+  
   users:any = []
   
   userModel:any = {}
@@ -18,18 +18,23 @@ export class UserListComponent implements OnInit {
   
   //lifecycle hook
   ngOnInit(): void {
+    
     this.getUsers()
   }
 
-
+  
   delete(email:any){ 
     const res = this.authService.delete(email)
     if (res.status === 200) {
+      
       alert(res.data)
+      
     } else {
       alert(res.data)
     }
   }
+
+  
   edit(email:any) {
     
     const navigationExtras:NavigationExtras = {
@@ -50,10 +55,7 @@ export class UserListComponent implements OnInit {
       this.users = res.data
     }
   }
-
+ 
 }
 
-//lifecycle hooks 
-/* 
 
-*/

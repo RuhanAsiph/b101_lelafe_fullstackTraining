@@ -18,7 +18,7 @@
 			</tr>
 		</thead>
 		<tbody>
-		  <p *ngIf="!isEmpty">No users found</p>
+		  
 
 			<tr *ngFor="let user of users" >
 				<td>{{user.firstName}}</td>
@@ -32,8 +32,13 @@
 					<i class="fa fa-trash fa-fw text-danger" aria-hidden="true" (click)="delete(user.email)"></i>
 				</td>
 			</tr>
+			<tr *ngIf="users.length === 0">
+				<td colspan="7"><p class="text-center text-danger">There are zero users in the database, please register a user</p></td>
+			</tr>
 
 		</tbody>
+		
 	</table>
+	<br>
 	
 </section>	

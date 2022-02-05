@@ -43,7 +43,8 @@ export class RegisterComponent implements OnInit {
     const res = this.authService.update(this.userModel)
     if (res.status === 200) {
       alert(res.data)
-      this.userModel = {}
+      this.router.navigate(['/userlist'])
+
     } else {
       alert(res.data)
     }

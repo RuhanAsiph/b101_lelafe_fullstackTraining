@@ -17,6 +17,13 @@ export class AuthService {
 
   constructor(private http:HttpClient) { }
 
+
+  //backend
+  testBackend(){
+    return this.http.get(`${this.serverUrl}test`)
+  }
+
+
   login(authModel:Auth) {
     const userFound = this.userDB.find((user:any) => user.email === authModel.email && user.password === authModel.password )
     
