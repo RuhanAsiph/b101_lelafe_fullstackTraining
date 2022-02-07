@@ -29,38 +29,12 @@ export class AuthService {
   
   login(authModel:Auth) {
     return this.http.post(`${this.serverUrl}login`, authModel)
-    // const userFound = this.userDB.find((user:any) => user.email === authModel.email && user.password === authModel.password )
     
-    // if (userFound) {
-    
-    //   return {
-    //     status:200,
-    //     data: "user Authenticated"
-    //   }
-    // } else {
-    //   return {
-    //     status:409,
-    //     data: "invalid email or password"
-    //   }
-    // }
     
   }
 
   register(userModel:Regis){
-
-    const isExists = this.userDB.some((user:any) => user.email === userModel.email)
-    if (!isExists) {
-      this.userDB.push(userModel)
-      return {
-        status: 200,
-        data: "User sucessfully registered"
-      }
-    } else {
-      return {
-        status: 409,
-        data: "user already exists"
-      }
-    }
+    return this.http.post(`${this.serverUrl}register`, userModel)
   }
 
   update(userModel:Regis){

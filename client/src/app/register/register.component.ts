@@ -30,13 +30,16 @@ export class RegisterComponent implements OnInit {
   }
 
   register(){
-    const res = this.authService.register(this.userModel)
-    if (res.status === 200) {
-      alert(res.data)
-      this.userModel = {}
-    } else {
-      alert(res.data)
-    }
+    this.authService.register(this.userModel).subscribe((res) => {
+      
+    })
+    // const res = this.authService.register(this.userModel)
+    // if (res.status === 200) {
+    //   alert(res.data)
+    //   this.userModel = {}
+    // } else {
+    //   alert(res.data)
+    // }
   }
 
   update(){
