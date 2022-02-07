@@ -19,29 +19,30 @@ export class LoginComponent implements OnInit {
   constructor(private authService:AuthService, private router:Router) { }
 
   ngOnInit(): void {
-    this.testBackend()
+    
   }
-  testBackend(){
-    this.authService.testBackend().subscribe((res:any) => {
-      alert(res.data)
-    })
-  }
-  login() {
-    const res = this.authService.login(this.authModel)
 
-    if (res.status === 200) {
-      this.router.navigate(['/userlist'])
-      alert(res.data)
-      this.authModel = {}
-    } else {
-      alert(res.data)
-    }
+
+ 
+
+
+  login() {
+    this.authService.login(this.authModel).subscribe((res) => {
+      
+    })
+
+    // if (res.status === 200) {
+    //   this.router.navigate(['/userlist'])
+    //   alert(res.data)
+    //   this.authModel = {}
+    // } else {
+    //   alert(res.data)
+    // }
   }
   
 }
 
-//todo 
-/* 
-  flow: html -> ts -> service --> server(nodeapi) -> index(main server.js) -> routes -> controllers   
-  s5 - study http methods
-*/
+ 
+ // flow: html -> ts -> service --> server(nodeapi) -> index(main server.js) -> routes -> controllers   
+
+

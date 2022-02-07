@@ -13,7 +13,7 @@ export class AuthService {
     email: "abc@abc",
     password: "abc"
   }
-]
+  ]
 
   constructor(private http:HttpClient) { }
 
@@ -23,26 +23,31 @@ export class AuthService {
     return this.http.get(`${this.serverUrl}test`)
   }
 
-
+  // pass some data in params when using get method
+  //this.http.get(`${this.serverUrl}getUserbyId/12345`)
+  
+  
   login(authModel:Auth) {
-    const userFound = this.userDB.find((user:any) => user.email === authModel.email && user.password === authModel.password )
+    return this.http.post(`${this.serverUrl}login`, authModel)
+    // const userFound = this.userDB.find((user:any) => user.email === authModel.email && user.password === authModel.password )
     
-    if (userFound) {
+    // if (userFound) {
     
-      return {
-        status:200,
-        data: "user Authenticated"
-      }
-    } else {
-      return {
-        status:409,
-        data: "invalid email or password"
-      }
-    }
+    //   return {
+    //     status:200,
+    //     data: "user Authenticated"
+    //   }
+    // } else {
+    //   return {
+    //     status:409,
+    //     data: "invalid email or password"
+    //   }
+    // }
     
   }
 
   register(userModel:Regis){
+
     const isExists = this.userDB.some((user:any) => user.email === userModel.email)
     if (!isExists) {
       this.userDB.push(userModel)
