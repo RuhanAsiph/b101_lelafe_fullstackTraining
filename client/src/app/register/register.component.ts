@@ -31,26 +31,14 @@ export class RegisterComponent implements OnInit {
 
   register(){
     this.authService.register(this.userModel).subscribe((res) => {
-      
+    
     })
-    // const res = this.authService.register(this.userModel)
-    // if (res.status === 200) {
-    //   alert(res.data)
-    //   this.userModel = {}
-    // } else {
-    //   alert(res.data)
-    // }
   }
 
   update(){
-    const res = this.authService.update(this.userModel)
-    if (res.status === 200) {
-      alert(res.data)
-      this.router.navigate(['/userlist'])
-
-    } else {
-      alert(res.data)
-    }
+    this.authService.update(this.userModel).subscribe((res) => {
+      
+    })
   }
 
   getUserByEmail(){

@@ -14,6 +14,7 @@ const userDB = [{
 }
 ]
 
+//for login
 app.post('/login', (req, res) => {
 	const authModel = req.body
 	const userFound = userDB.find((user) => user.email === authModel.email && user.password === authModel.password )
@@ -28,7 +29,7 @@ app.post('/login', (req, res) => {
     }
 })
 
-
+//for register()
 app.post('/register', (req, res) => {
 	let userModel = req.body
 
@@ -48,9 +49,22 @@ app.post('/register', (req, res) => {
 	
 })
 
-// app.get('/test/:email', (req, res) => {
-// 	const email = req.params.email
-// })
+//for update()
+app.put('/update-user/:email', (req, res) => {
+	const email = req.params.email
+	const updatedUserModel = req.body
+	let index = userDB.findIndex((element) => element.email === email)
+    if (index != -1) {
+      userDB[index] = updatedUserModel;
+	  res.status(200).json({
+		data: "user sucess fully updated"
+	  })
+    } else {
+		res.status(400).json({
+			data: "user not found"
+		})
+    }
+ })
 
 
 app.listen(PORT, () => {

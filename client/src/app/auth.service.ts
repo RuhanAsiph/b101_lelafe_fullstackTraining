@@ -22,15 +22,9 @@ export class AuthService {
   testBackend(){
     return this.http.get(`${this.serverUrl}test`)
   }
-
-  // pass some data in params when using get method
-  //this.http.get(`${this.serverUrl}getUserbyId/12345`)
-  
   
   login(authModel:Auth) {
-    return this.http.post(`${this.serverUrl}login`, authModel)
-    
-    
+    return this.http.post(`${this.serverUrl}login`, authModel)  
   }
 
   register(userModel:Regis){
@@ -38,19 +32,7 @@ export class AuthService {
   }
 
   update(userModel:Regis){
-    let index = this.userDB.findIndex((element:any) => element.email === userModel.email)
-    if (index != -1) {
-      this.userDB[index] = userModel;
-      return {
-        status: 200,
-        data: "user update success"
-      }
-    } else {
-      return {
-        status: 407,
-        data: "forbidden endpoint"
-      }
-    }
+    return this.http.put(`${this.serverUrl}update-user/${userModel.email}`, userModel)
   }
 
   delete(email:any){
