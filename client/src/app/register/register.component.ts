@@ -42,11 +42,7 @@ export class RegisterComponent implements OnInit {
   }
 
   getUserByEmail(){
-    const res = this.authService.getUserByEmail(this.email)
-    if (res.status === 200) {
-      this.userModel = res.data
-    } else {
-      alert(res.data)
-    }
+    //where are we using this?
+    this.authService.getUserByEmail(this.email)
   }
 }

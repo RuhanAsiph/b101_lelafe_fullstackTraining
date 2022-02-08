@@ -53,18 +53,9 @@ export class AuthService {
   }
 
   getUserByEmail(email:any){
-    const user = this.userDB.find((user:any) => user.email === email)
-    if (user) {
-      return {
-        status: 200,
-        data: user
-      }
-    } else {
-      return {
-        status: 409,
-        data: "user not found"
-      }
-    }
+    //?
+    return this.http.get(`${this.serverUrl}get-user/${email}`)
+    
   }
 
   //custom functions
