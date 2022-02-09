@@ -30,19 +30,36 @@ export class RegisterComponent implements OnInit {
   }
 
   register(){
-    this.authService.register(this.userModel).subscribe((res) => {
-    
+    this.authService.register(this.userModel).subscribe((res:any) => {
+      if (res.status === 200) {
+        alert(res.data)
+        this.userModel = {}
+      } else {
+        alert(res.data)
+      }
     })
   }
 
   update(){
-    this.authService.update(this.userModel).subscribe((res) => {
-      
+    this.authService.update(this.userModel).subscribe((res:any) => {
+      if (res.status === 200) {
+        alert(res.data)
+        this.userModel = {}
+        this.back()
+      } else {
+        alert(res.data)
+      }
     })
   }
 
   getUserByEmail(){
     //where are we using this?
-    this.authService.getUserByEmail(this.email)
+    this.authService.getUserByEmail(this.email).subscribe((res:any) => {
+      if (res.status === 200) {
+      this.userModel = res.data
+    } else {
+      alert(res.data)
+    }
+    })
   }
 }

@@ -22,22 +22,18 @@ export class LoginComponent implements OnInit {
     
   }
 
-
- 
-
-
   login() {
-    this.authService.login(this.authModel).subscribe((res) => {
-      
+    this.authService.login(this.authModel).subscribe((res:any) => {
+      if (res.status === 200) {
+      this.router.navigate(['/userlist'])
+      alert(res.data)
+      this.authModel = {}
+    } else {
+      alert(res.data)
+    }
     })
 
-    // if (res.status === 200) {
-    //   this.router.navigate(['/userlist'])
-    //   alert(res.data)
-    //   this.authModel = {}
-    // } else {
-    //   alert(res.data)
-    // }
+    
   }
   
 }

@@ -3,10 +3,11 @@ var cors = require('cors')
 const app = express()
 app.use(cors())
 const PORT = 5000;
+const userRouter = require('./routes/userRouter')
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
-
+app.use('/user', userRouter)
 
 const userDB = [{
 	email: "abc@abc",
@@ -19,11 +20,13 @@ app.post('/login', (req, res) => {
 	const authModel = req.body
 	const userFound = userDB.find((user) => user.email === authModel.email && user.password === authModel.password )
     if (userFound) {
-		res.status(200).json({
+		res.json({
+			status: 200,
 			data: "user authenticated"
 		})
     } else {
-		res.status(400).json({
+		res.json({
+			status: 400,
 			data: "please register"
 		})
     }
@@ -38,11 +41,13 @@ app.post('/register', (req, res) => {
     if (!isExists) {
      userDB.push(userModel)
 	 
-     res.status(200).json({
+     res.json({
+		 status: 200,
 		 data: "user sucess fully registered"
 	 })
    	} else {
-     res.status(400).json({
+     res.json({
+		 status: 400,
 		 data:"user already exists"
 	 })
    	}
@@ -56,46 +61,62 @@ app.put('/update-user/:email', (req, res) => {
 	let index = userDB.findIndex((element) => element.email === email)
     if (index != -1) {
       userDB[index] = updatedUserModel;
-	  res.status(200).json({
+	  res.json({
+		status: 200,
 		data: "user sucess fully updated"
 	  })
     } else {
-		res.status(400).json({
+		res.json({
+			status: 400,
 			data: "user not found"
 		})
     }
  })
 
  //get user by email ()
- app.get('get-user/:email', (req, res) => {
+ app.get('/get-user/:email', (req, res) => {
 	 const email = req.params.email
-	 const user = this.userDB.find((user) => user.email === email)
+	 const user = userDB.find((user) => user.email === email)
     if (user) {
-     res.status(200).json({
+     res.json({
+		 status: 200,
 		 data: user
 	 })
     } else {
-      res.status(400).json({
-		  data: "user not found"
+      res.json({
+		status: 400,  
+		data: "user not found"
 	  })
     }
  })
 
 //delete user
-app.delete('delete-user/:email', (req, res) => {
+app.delete('/delete-user/:email', (req, res) => {
 	const email = req.params.email
 	let index = userDB.findIndex((element) => element.email === email)
+	console.log(index)
 	//? logic
-    if (index = -1) {
+    if (index > -1) {
       userDB.splice(index, 1)
-      res.status(200).json({
+      res.json({
+		  status: 200,
 		  data: "successfully removed"
 	  })
     } else {
-      res.status(400).json({
-		  data: "error, lost index"
+      res.json({
+		status: 400,  
+		data: "error, lost index"
 	  })
     }
+})
+
+app.get('/get-users', (req,res) => {
+	res.json({
+		status: 200,
+		data: userDB
+	})
+		
+	  
 })
 
 //custom function 

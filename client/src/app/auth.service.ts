@@ -9,15 +9,9 @@ import { Regis } from './models/regisModel';
 })
 export class AuthService {
   serverUrl = environment.serverUrl
-  userDB:any = [{
-    email: "abc@abc",
-    password: "abc"
-  }
-  ]
-
   constructor(private http:HttpClient) { }
 
-
+  
   //backend
   testBackend(){
     return this.http.get(`${this.serverUrl}test`)
@@ -47,9 +41,7 @@ export class AuthService {
 
   //custom functions
   getUsers() {
-    return {
-      status: 200,
-      data: this.userDB
-    }
+    return this.http.get(`${this.serverUrl}get-users`)
+   
   }
 }

@@ -24,7 +24,14 @@ export class UserListComponent implements OnInit {
 
   
   delete(email:any){ 
-    this.authService.delete(email)
+    this.authService.delete(email).subscribe((res:any) => {
+      if (res.status === 200) {
+        alert(res.data)
+        this.getUsers()
+      } else {
+        alert(res.data)
+      }
+    })
   }
 
   
@@ -38,15 +45,20 @@ export class UserListComponent implements OnInit {
     this.router.navigate(['/register'], navigationExtras) //implement this in html
     
   }
+
+
   logout(){
     console.log('test')
   }
   //custom func
   getUsers(){
-    const res = this.authService.getUsers()
-    if (res.status === 200) {
-      this.users = res.data
-    }
+    
+    this.authService.getUsers().subscribe((res:any) => {
+      if (res.status === 200) {
+        this.users = res.data
+      }
+    })
+    
   }
  
 }
