@@ -81,6 +81,25 @@ app.put('/update-user/:email', (req, res) => {
     }
  })
 
+//delete user
+app.delete('delete-user/:email', (req, res) => {
+	const email = req.params.email
+	let index = userDB.findIndex((element) => element.email === email)
+	//? logic
+    if (index = -1) {
+      userDB.splice(index, 1)
+      res.status(200).json({
+		  data: "successfully removed"
+	  })
+    } else {
+      res.status(400).json({
+		  data: "error, lost index"
+	  })
+    }
+})
+
+//custom function 
+
 
 app.listen(PORT, () => {
 	console.log(`server started on ${PORT}`)

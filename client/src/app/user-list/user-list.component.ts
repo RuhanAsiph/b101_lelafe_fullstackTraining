@@ -24,15 +24,7 @@ export class UserListComponent implements OnInit {
 
   
   delete(email:any){ 
-    //implement in morning alhamd LiAllah
-    const res = this.authService.delete(email)
-    if (res.status === 200) {
-      
-      alert(res.data)
-      
-    } else {
-      alert(res.data)
-    }
+    this.authService.delete(email)
   }
 
   

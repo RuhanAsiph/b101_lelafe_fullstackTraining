@@ -36,20 +36,7 @@ export class AuthService {
   }
 
   delete(email:any){
-    let index = this.userDB.findIndex((element:any) => element.email === email)
-    if (index = -1) {
-      this.userDB.splice(index, 1)
-      return {
-        status: 200,
-        data: "successfully removed"
-      }
-    } else {
-      return {
-        status: 409,
-        data: "error, lost index"
-      }
-    }
-
+    return this.http.delete(`${this.serverUrl}delete-user/${email}`)
   }
 
   getUserByEmail(email:any){
