@@ -18,30 +18,30 @@ export class AuthService {
   }
   
   login(authModel:Auth) {
-    return this.http.post(`${this.serverUrl}login`, authModel)  
+    return this.http.post(`${this.serverUrl}user/login`, authModel)  
   }
 
   register(userModel:Regis){
-    return this.http.post(`${this.serverUrl}register`, userModel)
+    return this.http.post(`${this.serverUrl}user/register`, userModel)
   }
 
   update(userModel:Regis){
-    return this.http.put(`${this.serverUrl}update-user/${userModel.email}`, userModel)
+    return this.http.put(`${this.serverUrl}user/update-user/${userModel.email}`, userModel)
   }
 
   delete(email:any){
-    return this.http.delete(`${this.serverUrl}delete-user/${email}`)
+    return this.http.delete(`${this.serverUrl}user/delete-user/${email}`)
   }
 
   getUserByEmail(email:any){
     //?
-    return this.http.get(`${this.serverUrl}get-user/${email}`)
+    return this.http.get(`${this.serverUrl}user/get-user/${email}`)
     
   }
 
   //custom functions
   getUsers() {
-    return this.http.get(`${this.serverUrl}get-users`)
+    return this.http.get(`${this.serverUrl}user/get-users`)
    
   }
 }
