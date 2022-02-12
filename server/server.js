@@ -9,6 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
 
 //routes
+//mvc pattern 
 app.use('/user', userRouter)
 
 
