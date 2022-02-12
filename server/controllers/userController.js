@@ -1,12 +1,3 @@
-//test
-exports.test = (req,res) => {
-    
-    res.json({
-        status: 200, 
-        data: "hellow orld"
-    })
-}
-
 //userDB
 const userDB = [
     {
@@ -56,7 +47,7 @@ exports.register = (req, res) => {
     }
 }
 
-//for update controller
+//update controller
 exports.update = (req, res) => {
 	const email = req.params.email
 	const updatedUserModel = req.body
@@ -74,7 +65,7 @@ exports.update = (req, res) => {
 		})
     }
  }
-// get user controller
+//get user controller
  exports.getuser = (req, res) => {
     const email = req.params.email
     const user = userDB.find((user) => user.email === email)
@@ -107,7 +98,7 @@ exports.deleteuser = (req, res) => {
         })
     }
 }
-
+//get users controller
 exports.getusers = (req, res) => {
     //how are we using this
     res.json({
