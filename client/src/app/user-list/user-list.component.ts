@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-user-list',
@@ -26,24 +27,36 @@ export class UserListComponent implements OnInit {
   delete(email:any){ 
     this.authService.delete(email).subscribe((res:any) => {
       if (res.status === 200) {
-        alert(res.data)
+        Swal.fire(res.data)
         this.getUsers()
       } else {
-        alert(res.data)
+        Swal.fire(res.data)
       }
     })
   }
 
   
   edit(email:any) {
-    
+    //?
     const navigationExtras:NavigationExtras = {
       queryParams: {
         SelectedEmail: email
       }
     }
-    this.router.navigate(['/register'], navigationExtras) //implement this in html
-    
+    Swal.fire({
+      title: 'Are you sure you want to edit the user?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Yes',
+      denyButtonText: `No`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this.router.navigate(['/register'], navigationExtras)
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
+      }
+    })
   }
 
 

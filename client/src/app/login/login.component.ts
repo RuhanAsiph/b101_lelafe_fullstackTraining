@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { Auth } from '../models/authModel';
+import Swal from 'sweetalert2'
 
 
 @Component({
@@ -25,11 +26,11 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.login(this.authModel).subscribe((res:any) => {
       if (res.status === 200) {
+      Swal.fire(res.data)
       this.router.navigate(['/userlist'])
-      alert(res.data)
       this.authModel = {}
     } else {
-      alert(res.data)
+      Swal.fire(res.data)
     }
     })
 

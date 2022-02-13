@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-register',
@@ -32,10 +33,10 @@ export class RegisterComponent implements OnInit {
   register(){
     this.authService.register(this.userModel).subscribe((res:any) => {
       if (res.status === 200) {
-        alert(res.data)
+        Swal.fire(res.data)
         this.userModel = {}
       } else {
-        alert(res.data)
+        Swal.fire(res.data)
       }
     })
   }
@@ -43,11 +44,11 @@ export class RegisterComponent implements OnInit {
   update(){
     this.authService.update(this.userModel).subscribe((res:any) => {
       if (res.status === 200) {
-        alert(res.data)
+        Swal.fire(res.data)
         this.userModel = {}
         this.back()
       } else {
-        alert(res.data)
+        Swal.fire(res.data)
       }
     })
   }
