@@ -1,4 +1,3 @@
-const { application } = require('express');
 const express = require('express')
 const router = express.Router();
 const userController = require('../controllers/userController');
@@ -10,16 +9,19 @@ router.post('/login', userController.login)
 //for register
 router.post('/register', userController.register)
 
-//for update()
-router.put('/update-user/:email', userController.update)
+// //for update()
+// router.put('/update-user/:email', userController.update)
 
 //get user by email ()
- router.get('/get-user/:email', userController.getuser)
+//router.get('/get-user/:email', userController.getuser)
 
-//delete user
-router.delete('/delete-user/:email', userController.deleteuser)
+// //delete user
+router.delete('/delete-user/:id', userController.deleteuser)
 
 //custom functions
-router.get('/get-users', userController.getusers)
+ router.get('/get-users', userController.getusers)
+
+// router.get('/test', userController.test)
 
 module.exports = router
+

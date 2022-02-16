@@ -24,8 +24,8 @@ export class UserListComponent implements OnInit {
   }
 
   
-  delete(email:any){ 
-    this.authService.delete(email).subscribe((res:any) => {
+  delete(_id:any){ 
+    this.authService.delete(_id).subscribe((res:any) => {
       if (res.status === 200) {
         Swal.fire(res.data)
         this.getUsers()

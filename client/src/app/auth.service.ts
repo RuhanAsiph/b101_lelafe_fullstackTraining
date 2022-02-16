@@ -29,8 +29,8 @@ export class AuthService {
     return this.http.put(`${this.serverUrl}user/update-user/${userModel.email}`, userModel)
   }
 
-  delete(email:any){
-    return this.http.delete(`${this.serverUrl}user/delete-user/${email}`)
+  delete(_id:any){
+    return this.http.delete(`${this.serverUrl}user/delete-user/${_id}`)
   }
 
   getUserByEmail(email:any){
