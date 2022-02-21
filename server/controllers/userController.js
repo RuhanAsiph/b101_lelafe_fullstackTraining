@@ -1,5 +1,6 @@
 
-const e = require('express')
+const express = require('express')
+//const userModel = require('../models/user.model')
 const User = require('../models/user.model')
 
 
@@ -28,54 +29,76 @@ exports.login = (req, res) => {
 exports.register = (req, res) => {
     //how to access the db?
     userModel = new User(req.body)
-    userModel.save((err, data) => {
-        if (err) {
-            res.send(err)
-        } else {
+    User.findOne({ email: userModel.email}, (err, user) => {
+        console.log(user)
+        if (user) {
             res.json({
-                status: 200,
-                data: "user successfully registered"
+                status: 400, 
+                data: "user already exists"
             })
-            console.log(data)
+        } else if (!user) {
+            userModel.save((err, data) => {
+                if (err) {
+                    res.send(err)
+                } else {
+                    res.json({
+                        status: 200,
+                        data: "user successfully registered"
+                    })
+                    console.log(user)
+                }
+            })
+        } else if (err) {
+            console.log(err)
         }
     })
 }
+   
+
 
 //update controller
 exports.update = (req, res) => {
 	const id = req.params.id
 	const updatedUserModel = req.body
-    
-	// let index = userDB.findIndex((element) => element.email === email)
-    // if (index != -1) {
-    //   userDB[index] = updatedUserModel;
-	//   res.json({
-	// 	status: 200,
-	// 	data: "user sucess fully updated"
-	//   })
-    // } else {
-	// 	res.json({
-	// 		status: 400,
-	// 		data: "user not found"
-	// 	})
-    //}
+    User.findOneAndUpdate({_id: id}, updatedUserModel, (err, data) => {
+        if (data) {
+            res.json({
+                status: 200, 
+                data: "success"
+            })
+        }
+
+        else if (!data) {
+            res.json({
+                status: 400,
+                data: "no such user exists"
+            })
+
+        }
+
+        else {
+            console.log(err)
+        }
+    })
  }
 
 //get user controller
  exports.getuser = (req, res) => {
     const id = req.params.id
-//     const user = userDB.find((user) => user.email === email)
-//    if (user) {
-//     res.json({
-//         status: 200,
-//         data: user
-//     })
-//    } else {
-//      res.json({
-//        status: 400,  
-//        data: "user not found"
-//      })
-//    }
+  
+    User.findById(id).then(userFound => {
+        if(userFound) {
+            
+            return res.json({
+                status: 200, 
+                data: userFound
+            })
+        }
+        return res.json({
+            status: 400,
+            data: "user not found"
+        })
+    })
  }
 //delete user controller
 exports.deleteuser = (req, res) => {
