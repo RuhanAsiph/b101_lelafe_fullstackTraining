@@ -34,13 +34,12 @@ export class UserListComponent implements OnInit {
       }
     })
   }
-
-  
-  edit(email:any) {
+  //?
+  edit(id:any) {
     //?
     const navigationExtras:NavigationExtras = {
       queryParams: {
-        SelectedEmail: email
+        id: id
       }
     }
     Swal.fire({

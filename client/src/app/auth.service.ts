@@ -25,17 +25,17 @@ export class AuthService {
     return this.http.post(`${this.serverUrl}user/register`, userModel)
   }
 
-  update(userModel:Regis){
-    return this.http.put(`${this.serverUrl}user/update-user/${userModel.email}`, userModel)
+  update(userModel:Regis, id:any){
+    return this.http.put(`${this.serverUrl}user/update-user/${id}`, userModel)
   }
 
   delete(_id:any){
     return this.http.delete(`${this.serverUrl}user/delete-user/${_id}`)
   }
 
-  getUserByEmail(email:any){
-    //?
-    return this.http.get(`${this.serverUrl}user/get-user/${email}`)
+  getUserById(id:any){
+    //? where
+    return this.http.get(`${this.serverUrl}user/get-user/${id}`)
     
   }
 

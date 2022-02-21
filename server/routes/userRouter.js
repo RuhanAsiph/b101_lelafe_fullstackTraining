@@ -9,13 +9,13 @@ router.post('/login', userController.login)
 //for register
 router.post('/register', userController.register)
 
-// //for update()
-// router.put('/update-user/:email', userController.update)
+//for update()
+router.put('/update-user/:id', userController.update)
 
 //get user by email ()
-//router.get('/get-user/:email', userController.getuser)
+router.get('/get-user/:id', userController.getuser)
 
-// //delete user
+//delete user
 router.delete('/delete-user/:id', userController.deleteuser)
 
 //custom functions

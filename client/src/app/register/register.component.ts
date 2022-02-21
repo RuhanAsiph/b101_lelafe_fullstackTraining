@@ -12,17 +12,17 @@ export class RegisterComponent implements OnInit {
 
   userModel:any = {}
   isUpdate:boolean = false;
-  email:any;
+  id:any;
 
   constructor(private authService:AuthService, private router:Router, private activatedRoute:ActivatedRoute) {
-    this.email = this.activatedRoute.snapshot.queryParamMap.get("SelectedEmail")
+    this.id = this.activatedRoute.snapshot.queryParamMap.get("id")
    }
   
 
   ngOnInit(): void {
-    if(this.email){
+    if(this.id){
       this.isUpdate = !this.isUpdate
-      this.getUserByEmail()
+      this.getUserById()
     }
   }
   
@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit {
   }
 
   update(){
-    this.authService.update(this.userModel).subscribe((res:any) => {
+    this.authService.update(this.userModel, this.id).subscribe((res:any) => {
       if (res.status === 200) {
         Swal.fire(res.data)
         this.userModel = {}
@@ -53,9 +53,9 @@ export class RegisterComponent implements OnInit {
     })
   }
 
-  getUserByEmail(){
+  getUserById(){
     //where are we using this?
-    this.authService.getUserByEmail(this.email).subscribe((res:any) => {
+    this.authService.getUserById(this.id).subscribe((res:any) => {
       if (res.status === 200) {
       this.userModel = res.data
     } else {
