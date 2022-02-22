@@ -32,9 +32,7 @@ export class LoginComponent implements OnInit {
     } else {
       Swal.fire(res.data)
     }
-    })
-
-    
+    })  
   }
   
 }
